@@ -12,7 +12,7 @@ variable "labels" {
 }
 
 variable "project_devops_group" {
-  description = "Group allowed to apply impersonate Terraform service account, must already exist."
+  description = "Group allowed to impersonate Terraform service account, must already exist."
   type = string
 }
 
