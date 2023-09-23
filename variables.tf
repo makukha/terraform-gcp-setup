@@ -11,6 +11,11 @@ variable "labels" {
   default = {}
 }
 
+variable "project_devops_group" {
+  description = "Group allowed to apply impersonate Terraform service account, must already exist."
+  type = string
+}
+
 # Terraform service account
 
 variable "service_account_id" {

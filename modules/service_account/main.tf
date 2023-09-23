@@ -11,7 +11,7 @@ resource "google_project_iam_member" "role" {
 }
 
 resource "google_service_account_iam_member" "impersonate" {
-  service_account_id = google_service_account.main.email
-  member = "projectOwner:${var.project_id}"
+  service_account_id = google_service_account.main.id
+  member = "group:${var.project_devops_group}"
   role = "roles/iam.serviceAccountTokenCreator"
 }

@@ -15,6 +15,7 @@ module "project_services" {
 module "service_account" {
   source = "./modules/service_account"
   project_id = var.project_id
+  project_devops_group = var.project_devops_group
   service_account_id = var.service_account_id
   service_account_roles = var.service_account_roles
 

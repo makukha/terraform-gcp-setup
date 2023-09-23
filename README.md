@@ -6,12 +6,14 @@ This module requires:
 
 1. Existing Google Cloud project with billing enabled.
 2. Google account that has owner permissions to this project.
+3. IAM group that will be granted permissions to impersonate service account.
 
-This module creates:
+This module:
 
-1. Service account with minimal permissions.
-2. Storage bucket with admin permissions granted to both new service account and project owner account.
-3. Enabled Google services necessary to run steps above.
+1. Creates service account with minimal permissions.
+2. Creates storage bucket with admin permissions granted to both new service account and project owner account.
+3. Grants permissions to impersonate srvice account to IAM group.
+4. Enables Google Cloud services necessary to run steps above.
 
 
 ## Simple usage
@@ -37,8 +39,9 @@ See also `examples/full`.
 
 4. [Enable billing](https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project) for the project `${PROJECT_ID}`
 
+5. Create IAM group and add yourself to the group. Note the group name, it will be referenced below as `${PROJECT_DEVOPS_GROUP}`.
 
-5. Create root module files:
+6. Create root module files:
 
     * `main.tf`
 
@@ -52,6 +55,7 @@ See also `examples/full`.
         module "setup" {
           source = "github.com/makukha/terraform-gcp-setup"
           project_id = "${PROJECT_ID}"
+          project_devops_group = "${PROJECT_DEVOPS_GROUP}"
           state_bucket_location = "europe-west1"
           state_bucket_name = "${PROJECT_ID}-tfstate"
         }
@@ -65,7 +69,7 @@ See also `examples/full`.
         }
         ```
 
-6. Init, check, apply, see outputs:
+7. Init, check, apply, see outputs:
 
     ```bash
     terraform init
