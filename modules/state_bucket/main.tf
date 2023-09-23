@@ -18,6 +18,7 @@ resource "google_storage_bucket_iam_member" "main" {
   for_each = {
     service_account = var.service_account.member,
     project_owner = "projectOwner:${var.project_id}",
+    devops_group = "group:${var.project_devops_group}",
   }
   bucket = google_storage_bucket.main.name
   role = "roles/storage.admin"
